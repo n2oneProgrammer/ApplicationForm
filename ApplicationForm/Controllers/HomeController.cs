@@ -22,17 +22,22 @@ public class HomeController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Surname,BirthdayDate,EducationId")] Application application)
+    public async Task<IActionResult> Create(ViewModel.ApplicationForm application)
     {
-        if (ModelState.IsValid)
+        if (application.BirthdayDate.ToDateTime(new TimeOnly(0, 0)) >= DateTime.Today)
         {
-            _context.Add(application);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ModelState.AddModelError("BirthdayDate",
+                "Please enter the correct date");
+        }
+        if (!ModelState.IsValid)
+        {
+            ViewData["EducationId"] = new SelectList(_context.EducationTypes, "Id", "Name", application.EducationId);
+            return View("Index", application);
         }
 
-        ViewData["EducationId"] = new SelectList(_context.EducationTypes, "Id", "Name", application.EducationId);
-        return View("Index", application);
+        _context.Add(new Application(application));
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
