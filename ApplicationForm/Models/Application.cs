@@ -10,6 +10,11 @@ public class Application
 
     [Required] [StringLength(50)] public string Surname { get; set; } = default!;
 
+    [Required]
+    [StringLength(50)]
+    [EmailAddress]
+    public string Email { get; set; } = default!;
+
     [Required] public DateOnly BirthdayDate { get; set; }
 
     public EducationType Education { get; set; } = default!;
@@ -23,6 +28,7 @@ public class Application
         this.Id = 0;
         this.Name = form.Name;
         this.Surname = form.Surname;
+        this.Email = form.Email;
         this.BirthdayDate = form.BirthdayDate;
         this.EducationId = form.EducationId;
     }
