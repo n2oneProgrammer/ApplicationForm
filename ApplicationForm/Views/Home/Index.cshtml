@@ -1,4 +1,5 @@
-﻿@model ApplicationForm.ViewModel.ApplicationForm
+﻿@using NuGet.Protocol
+@model ApplicationForm.ViewModel.ApplicationForm
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +11,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -37,8 +38,23 @@
                 <select asp-for="EducationId" class="form-control" asp-items="ViewBag.EducationId"></select>
             </div>
             <div class="form-group">
+                <label class="control-label">LM</label>
+                <input type="File" asp-for="File" class="form-control" accept="image/jpeg, application/pdf, application/msword"/>
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">CV</label>
+                <input type="File" asp-for="File" class="form-control" accept="image/jpeg, application/pdf, application/msword"/>
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div id="attached-file-group">
+
+            </div>
+            <a id="add-attached-file">Add file</a>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
 </div>
+<script src="/js/index.js"></script>

@@ -20,4 +20,6 @@ public class ApplicationForm
     [Required]
     [Display(Name = "Education")]
     public int EducationId { get; set; }
+
+    [Required] public List<IFormFile> File { get; set; }
 }
