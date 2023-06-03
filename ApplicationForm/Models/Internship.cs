@@ -14,8 +14,8 @@ public class Internship
     public string CompanyName { get; set; } = default!;
     
     [Required]
-    public DateTime StartDate { get; set; }
+    public DateOnly StartDate { get; set; }
     
     [Required]
-    public DateTime EndDate { get; set; }
+    public DateOnly EndDate { get; set; }
 }

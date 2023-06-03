@@ -51,6 +51,50 @@ public class HomeController : Controller
             }
         }
 
+        if (application.CompanyNames.Count == application.InternshipStarts.Count &&
+            application.InternshipStarts.Count == application.InternshipEnds.Count)
+        {
+            int countInternship = application.CompanyNames.Count;
+            if (countInternship <= 20)
+            {
+                for (int i = 0; i < countInternship; i++)
+                {
+                    Console.WriteLine(i);
+                    if (application.CompanyNames[i].Length == 0 || application.CompanyNames[i].Length > 100)
+                    {
+                        ModelState.AddModelError("InternshipCompanyName" + i,
+                            "Company Name is not correct");
+                        Console.WriteLine("CompanyName");
+                    }
+
+                    if (application.InternshipStarts[i].ToDateTime(new TimeOnly(0, 0)) >= DateTime.Today)
+                    {
+                        ModelState.AddModelError("InternshipInternshipStarts" + i,
+                            "Internship Start is not correct");
+                        Console.WriteLine("Start");
+                    }
+
+                    if (application.InternshipEnds[i].ToDateTime(new TimeOnly(0, 0)) >= DateTime.Today ||
+                        application.InternshipEnds[i] <= application.InternshipStarts[i]
+                       )
+                    {
+                        ModelState.AddModelError("InternshipInternshipEnds" + i,
+                            "Internship End is not correct");
+                        Console.WriteLine("End");
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("Internship",
+                    "Count of Internship should be less then 20");
+            }
+        }
+        else
+        {
+            ModelState.AddModelError("Internship", "Name, Start, End intern should be complete in every Internship");
+        }
+
         if (!ModelState.IsValid)
         {
             ViewData["EducationId"] = new SelectList(_context.EducationTypes, "Id", "Name", application.EducationId);
@@ -60,9 +104,6 @@ public class HomeController : Controller
         Application app = new Application(application);
         _context.Add(app);
         await _context.SaveChangesAsync();
-        Console.WriteLine("?");
-        Console.WriteLine(app.Id);
-        Console.WriteLine(files.Count);
         foreach (var file in files)
         {
             AttachedFile attachedFile = new AttachedFile()
@@ -75,7 +116,28 @@ public class HomeController : Controller
         }
 
         await _context.SaveChangesAsync();
+        await SaveInternShipList(application, app.Id);
+
         return RedirectToAction(nameof(Index));
+    }
+
+    async Task SaveInternShipList(ViewModel.ApplicationForm application, int applicationId)
+    {
+        int countInternship = application.CompanyNames.Count;
+        for (int i = 0; i < countInternship; i++)
+        {
+            Internship internship = new Internship()
+            {
+                Id = 0,
+                ApplicationId = applicationId,
+                CompanyName = application.CompanyNames[i],
+                StartDate = application.InternshipStarts[i],
+                EndDate = application.InternshipEnds[i],
+            };
+            _context.Add(internship);
+        }
+
+        await _context.SaveChangesAsync();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

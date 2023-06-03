@@ -52,3 +52,10 @@ body {
 .file-group{
     margin-top:10px;
 }
+.internship-group{
+    border: black 1px solid;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 1rem;
+}

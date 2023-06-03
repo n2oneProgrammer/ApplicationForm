@@ -21,5 +21,8 @@ public class ApplicationForm
     [Display(Name = "Education")]
     public int EducationId { get; set; }
 
-    [Required] public List<IFormFile> File { get; set; }
+    [Required] public List<IFormFile> File { get; set; } = new List<IFormFile>();
+    [Required] public List<String> CompanyNames { get; set; } = new List<string>();
+    [Required] public List<DateOnly> InternshipStarts { get; set; } = new List<DateOnly>();
+    [Required] public List<DateOnly> InternshipEnds { get; set; } = new List<DateOnly>();
 }
