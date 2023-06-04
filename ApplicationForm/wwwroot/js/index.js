@@ -47,13 +47,17 @@ window.addEventListener("load", () => {
     addFileButton.on("click", () => {
         let group = $("<div/>", {class: "form-group file-group"});
         let line = $("<div/>", {class: "line"});
-        let input = $("<input/>", {type: "file", name: "File", class: "form-control"});
+        let id = Math.floor(Math.random() * 100000000);
+        let input = $("<input/>", {type: "file", name: "File", id: "attachedFile" + id, class: "form-control"});
+        input.on("change", () => attachedFileValidatorCheck());
         let removeButton = $("<a/>", {class: "removeButton"});
         removeButton.text("X");
         removeButton.on("click", (e) => {
             group.remove()
+            removeAttachedFileValidator(id);
         })
-        let span = $("<span/>", {class: "text-danger"});
+        addAttachedFileValidator(id);
+        let span = $("<span/>", {class: "text-danger", id: "attachedFileError" + id});
         line.append(input);
         line.append(removeButton);
         group.append(line);
@@ -91,5 +95,7 @@ window.addEventListener("load", () => {
     internshipNumberInput.on("change", (event) => {
         changeNumberOfInternship();
     })
+
+
 })
 
