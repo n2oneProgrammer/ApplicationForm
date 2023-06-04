@@ -5,7 +5,7 @@ namespace ApplicationForm.Models;
 public class ApplicationDbContext : DbContext
 {
     private readonly string _connectionString =
-        "Server=localhost\\MSSQLSERVER01;Database=ApplicationFromDb;Trusted_Connection=True;TrustServerCertificate=True;";
+        "Server=localhost\\MSSQLSERVER01;Database=ApplicationFormDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
     public DbSet<Application> Applications { get; set; }
     public DbSet<AttachedFile> AttachedFiles { get; set; }
