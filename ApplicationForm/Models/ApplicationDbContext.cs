@@ -4,6 +4,9 @@ namespace ApplicationForm.Models;
 
 public class ApplicationDbContext : DbContext
 {
+    private readonly string _connectionString =
+        "Server=localhost\\MSSQLSERVER01;Database=ApplicationFromDb;Trusted_Connection=True;TrustServerCertificate=True;";
+
     public DbSet<Application> Applications { get; set; }
     public DbSet<AttachedFile> AttachedFiles { get; set; }
     public DbSet<EducationType> EducationTypes { get; set; }
@@ -32,8 +35,7 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(
-            "Server=localhost\\MSSQLSERVER01;Database=ApplicationFromDb;Trusted_Connection=True;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer(_connectionString);
         base.OnConfiguring(optionsBuilder);
     }
 }
