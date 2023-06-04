@@ -8,7 +8,7 @@ let createInternshipGroup = () => {
     let group1 = $("<div/>", {class: "form-group"});
     let label1 = $("<label/>", {class: "control-label"});
     label1.text("Company Name");
-    let input1 = $("<input/>", {name: "CompanyNames", class: "form-label"});
+    let input1 = $("<input/>", {name: "CompanyNames", class: "form-control"});
     let span1 = $("<span/>", {class: "text-danger", "data-valmsg-for": "CompanyNames"});
     group1.append(label1);
     group1.append(input1);
@@ -17,7 +17,7 @@ let createInternshipGroup = () => {
     let group2 = $("<div/>", {class: "form-group"});
     let label2 = $("<label/>", {class: "control-label"});
     label2.text("Start");
-    let input2 = $("<input/>", {name: "InternshipStarts", class: "form-label", type: "Date"});
+    let input2 = $("<input/>", {name: "InternshipStarts", class: "form-control", type: "Date"});
     let span2 = $("<span/>", {class: "text-danger", "data-valmsg-for": "InternshipStarts"});
     group2.append(label2);
     group2.append(input2);
@@ -26,11 +26,11 @@ let createInternshipGroup = () => {
     let group3 = $("<div/>", {class: "form-group"});
     let label3 = $("<label/>", {class: "control-label"});
     label3.text("End");
-    let input3 = $("<input/>", {name: "InternshipEnds", class: "form-label", type: "Date"});
+    let input3 = $("<input/>", {name: "InternshipEnds", class: "form-control", type: "Date"});
     let span3 = $("<span/>", {class: "text-danger", "data-valmsg-for": "InternshipEnds"});
-    group2.append(label3);
-    group2.append(input3);
-    group2.append(span3);
+    group3.append(label3);
+    group3.append(input3);
+    group3.append(span3);
 
     main.append(group1);
     main.append(group2);
