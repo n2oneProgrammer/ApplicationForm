@@ -4,21 +4,28 @@ namespace ApplicationForm.ViewModel;
 
 public class ApplicationForm
 {
-    [Required] [StringLength(50)] public string Name { get; set; } = default!;
+    [Required]
+    [StringLength(50)]
+    [Display(Name = "Imię")]
+    public string Name { get; set; } = default!;
 
-    [Required] [StringLength(50)] public string Surname { get; set; } = default!;
+    [Required]
+    [StringLength(50)]
+    [Display(Name = "Nazwisko")]
+    public string Surname { get; set; } = default!;
 
     [Required]
     [StringLength(50)]
     [EmailAddress]
+    [Display(Name = "Adres Email")]
     public string Email { get; set; } = default!;
 
     [Required(ErrorMessage = "The Birthday Date field is required.")]
-    [Display(Name = "Birthday Date")]
+    [Display(Name = "Data Urodzenia")]
     public DateOnly BirthdayDate { get; set; }
 
     [Required]
-    [Display(Name = "Education")]
+    [Display(Name = "Edukacja")]
     public int EducationId { get; set; }
 
     [Required] public List<IFormFile> File { get; set; } = new List<IFormFile>();

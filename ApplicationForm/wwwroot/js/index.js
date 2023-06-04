@@ -8,7 +8,7 @@ let createInternshipGroup = () => {
 
     let group1 = $("<div/>", {class: "form-group"});
     let label1 = $("<label/>", {class: "control-label"});
-    label1.text("Company Name");
+    label1.text("Nazwa Firmy");
     let input1 = $("<input/>", {name: "CompanyNames", id: "internship-company-name-" + id, class: "form-control"});
     input1.on("change", () => internshipValidatorCheck(id, "Name"));
     let span1 = $("<span/>", {
@@ -22,7 +22,7 @@ let createInternshipGroup = () => {
 
     let group2 = $("<div/>", {class: "form-group"});
     let label2 = $("<label/>", {class: "control-label"});
-    label2.text("Start");
+    label2.text("Od");
     let input2 = $("<input/>", {
         name: "InternshipStarts",
         id: "internship-start-" + id,
@@ -41,7 +41,7 @@ let createInternshipGroup = () => {
 
     let group3 = $("<div/>", {class: "form-group"});
     let label3 = $("<label/>", {class: "control-label"});
-    label3.text("End");
+    label3.text("Do");
     let input3 = $("<input/>", {
         name: "InternshipEnds",
         id: "internship-end-" + id,

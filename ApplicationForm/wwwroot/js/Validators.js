@@ -38,10 +38,10 @@ window.addEventListener("load", () => {
     let CVError = $("#CV-file-error");
     nameInput.on("change", () => {
         if (nameInput.val().length > 50) {
-            nameError.text("Name is too long");
+            nameError.text("Imię jest za długie");
             nameOk = false;
         } else if (nameInput.val().length === 0) {
-            nameError.text("Name is required");
+            nameError.text("Wprowadzenia imienia jest wymagane");
             nameOk = false;
         } else {
             nameError.text("");
@@ -51,10 +51,10 @@ window.addEventListener("load", () => {
     });
     surnameInput.on("change", () => {
         if (surnameInput.val().length > 50) {
-            surnameError.text("Surname is too long");
+            surnameError.text("Nazwisko jest za długie");
             surnameOk = false;
         } else if (surnameInput.val().length === 0) {
-            surnameError.text("Surname is required");
+            surnameError.text("Wprowadzenia nazwiska jest wymagane");
             surnameOk = false;
         } else {
             surnameError.text("");
@@ -70,7 +70,7 @@ window.addEventListener("load", () => {
             emailError.text("");
             emailOk = true;
         } else {
-            emailError.text("Email is incorrect");
+            emailError.text("Email jest niepoprawny");
             emailOk = false;
         }
         updateSubmit();
@@ -78,7 +78,7 @@ window.addEventListener("load", () => {
 
     birthdayInput.on("change", () => {
         if (!isDateBeforeToday(birthdayInput.val())) {
-            birthdayError.text("Birthday is not correct");
+            birthdayError.text("Data urodzenia jest niepoprawna");
             birthdayOk = false;
         } else {
             birthdayError.text("");
@@ -91,10 +91,10 @@ window.addEventListener("load", () => {
         if (LMInput.prop("files").length > 0) {
             let f = LMInput.prop("files")[0];
             if (!["image/jpeg", "application/pdf", "application/msword"].includes(f.type)) {
-                LMError.text("File should be JPEG, PDF or MS word");
+                LMError.text("Plik musi być typu JPEG, PDF lub MS WORD");
                 LMFileOk = false;
             } else if (checkFile(f)) {
-                LMError.text("File should be less than 2MB.");
+                LMError.text("Plik musi być mniejszy niż 2 MB");
                 LMFileOk = false;
             } else {
                 LMError.text("");
@@ -111,10 +111,10 @@ window.addEventListener("load", () => {
         if (CVInput.prop("files").length > 0) {
             let f = CVInput.prop("files")[0];
             if (!["image/jpeg", "application/pdf", "application/msword"].includes(f.type)) {
-                CVError.text("File should be JPEG, PDF or MS word");
+                CVError.text("Plik musi być typu JPEG, PDF lub MS WORD");
                 CVFileOk = false;
             } else if (checkFile(f)) {
-                CVError.text("File should be less than 2MB.");
+                CVError.text("Plik musi być mniejszy niż 2 MB");
                 CVFileOk = false;
             } else {
                 CVError.text("");
@@ -144,7 +144,7 @@ let attachedFileValidatorCheck = (idChange = -1) => {
             let f = fileInput.prop("files")[0];
             if (checkFile(f)) {
                 if (idChange === file) {
-                    $("#attachedFileError" + file).text("File should be less than 2MB.");
+                    $("#attachedFileError" + file).text("Plik musi być mniejszy niż 2 MB");
                 }
                 ok = false;
             } else {
@@ -154,7 +154,7 @@ let attachedFileValidatorCheck = (idChange = -1) => {
             }
         } else {
             if (idChange === file) {
-                $("#attachedFileError" + file).text("File field should not be empty");
+                $("#attachedFileError" + file).text("Musisz wybrać plik");
             }
             ok = false;
         }
@@ -185,12 +185,12 @@ let internshipValidatorCheck = (idChange = -1, inputType = "") => {//input type 
 
         if (companyNameInput.val().length > 100) {
             if (idChange === id && inputType === "Name") {
-                companyNameError.text("Company name is too long");
+                companyNameError.text("Nazwa firmy jest za długa");
             }
             ok = false;
         } else if (companyNameInput.val().length === 0) {
             if (idChange === id && inputType === "Name") {
-                companyNameError.text("Company name is required");
+                companyNameError.text("Musisz wprowadzić nazwę firmy");
             }
             ok = false;
         } else {
@@ -200,7 +200,7 @@ let internshipValidatorCheck = (idChange = -1, inputType = "") => {//input type 
         }
         if (!isDateBeforeToday(startInput.val())) {
             if (idChange === id && inputType === "Start") {
-                startError.text("Date is not correct");
+                startError.text("Data jest niepoprawna");
             }
             ok = false;
         } else {
@@ -211,12 +211,12 @@ let internshipValidatorCheck = (idChange = -1, inputType = "") => {//input type 
 
         if (!isDateBeforeToday(endInput.val())) {
             if (idChange === id && inputType === "End") {
-                endError.text("Date is not correct");
+                endError.text("Data jest niepoprawna");
             }
             ok = false;
         } else if (!isDateLess(startInput.val(), endInput.val())) {
             if (idChange === id && inputType === "End") {
-                endError.text("End date should be after start date");
+                endError.text("Data zakończenia musi być po dacie poczatku");
             }
             ok = false;
         } else {
