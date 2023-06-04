@@ -22,11 +22,15 @@ body {
 }
 
 #add-attached-file {
+    text-align: right;
+}
+
+#add-attached-file a {
     padding: 10px;
     color: #0a53be;
 }
 
-#add-attached-file:hover {
+#add-attached-file a:hover {
     color: #08419c;
     text-decoration: #0a53be underline 1px;
     cursor: pointer;
@@ -36,7 +40,7 @@ body {
     position: relative;
 }
 
-.removeButton{
+.removeButton {
     position: absolute;
     right: -30px;
     top: -5px;
@@ -45,17 +49,25 @@ body {
     color: black;
     text-decoration: none;
 }
-.removeButton:hover{
+
+.removeButton:hover {
     color: grey;
     cursor: pointer;
 }
-.file-group{
-    margin-top:10px;
+
+.file-group {
+    margin-top: 10px;
 }
-.internship-group{
+
+.internship-group {
     border: black 1px solid;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 5px;
     border-radius: 1rem;
+}
+
+#submit {
+    margin-top: 10px;
+    width: 100%;
 }

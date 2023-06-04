@@ -48,10 +48,12 @@
                 <span asp-validation-for="File" id="CV-file-error" class="text-danger"></span>
             </div>
             <div id="attached-file-group">
+                <label class="control-label">Other</label>
 
             </div>
-
-            <a id="add-attached-file">Add file</a>
+            <div id="add-attached-file">
+                <a>Add file</a>
+            </div>
             <div class="form-group">
                 <label class="control-label">Count Of Internship</label>
                 <input type="number" id="count-of-internship" class="form-control" value="0" min="0" max="20"/>
@@ -60,7 +62,7 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary"/>
+                <input type="submit" value="Create" id="submit" class="btn btn-primary"/>
             </div>
         </form>
     </div>
