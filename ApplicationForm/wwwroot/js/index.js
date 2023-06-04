@@ -3,13 +3,19 @@ let internshipList = []
 
 
 let createInternshipGroup = () => {
-    let main = $("<div/>", {class: "internship-group"});
+    let id = Math.floor(Math.random() * 100000000);
+    let main = $("<div/>", {class: "internship-group", "data-id-internship": id});
 
     let group1 = $("<div/>", {class: "form-group"});
     let label1 = $("<label/>", {class: "control-label"});
     label1.text("Company Name");
-    let input1 = $("<input/>", {name: "CompanyNames", class: "form-control"});
-    let span1 = $("<span/>", {class: "text-danger", "data-valmsg-for": "CompanyNames"});
+    let input1 = $("<input/>", {name: "CompanyNames", id: "internship-company-name-" + id, class: "form-control"});
+    input1.on("change", () => internshipValidatorCheck(id, "Name"));
+    let span1 = $("<span/>", {
+        class: "text-danger",
+        id: "internship-company-name-error-" + id,
+        "data-valmsg-for": "CompanyNames"
+    });
     group1.append(label1);
     group1.append(input1);
     group1.append(span1);
@@ -17,8 +23,18 @@ let createInternshipGroup = () => {
     let group2 = $("<div/>", {class: "form-group"});
     let label2 = $("<label/>", {class: "control-label"});
     label2.text("Start");
-    let input2 = $("<input/>", {name: "InternshipStarts", class: "form-control", type: "Date"});
-    let span2 = $("<span/>", {class: "text-danger", "data-valmsg-for": "InternshipStarts"});
+    let input2 = $("<input/>", {
+        name: "InternshipStarts",
+        id: "internship-start-" + id,
+        class: "form-control",
+        type: "Date"
+    });
+    input2.on("change", () => internshipValidatorCheck(id, "Start"));
+    let span2 = $("<span/>", {
+        class: "text-danger",
+        id: "internship-start-error-" + id,
+        "data-valmsg-for": "InternshipStarts"
+    });
     group2.append(label2);
     group2.append(input2);
     group2.append(span2);
@@ -26,8 +42,19 @@ let createInternshipGroup = () => {
     let group3 = $("<div/>", {class: "form-group"});
     let label3 = $("<label/>", {class: "control-label"});
     label3.text("End");
-    let input3 = $("<input/>", {name: "InternshipEnds", class: "form-control", type: "Date"});
-    let span3 = $("<span/>", {class: "text-danger", "data-valmsg-for": "InternshipEnds"});
+    let input3 = $("<input/>", {
+        name: "InternshipEnds",
+        id: "internship-end-" + id,
+        class: "form-control",
+        type: "Date"
+    });
+    input3.on("change", () => internshipValidatorCheck(id, "End"));
+    let span3 = $("<span/>", {
+        class: "text-danger",
+        id: "internship-end-error-" + id,
+        "data-valmsg-for": "InternshipEnds"
+    });
+    addInternshipValidator(id);
     group3.append(label3);
     group3.append(input3);
     group3.append(span3);
@@ -49,7 +76,7 @@ window.addEventListener("load", () => {
         let line = $("<div/>", {class: "line"});
         let id = Math.floor(Math.random() * 100000000);
         let input = $("<input/>", {type: "file", name: "File", id: "attachedFile" + id, class: "form-control"});
-        input.on("change", () => attachedFileValidatorCheck());
+        input.on("change", () => attachedFileValidatorCheck(id));
         let removeButton = $("<a/>", {class: "removeButton"});
         removeButton.text("X");
         removeButton.on("click", (e) => {
@@ -81,6 +108,7 @@ window.addEventListener("load", () => {
             }
         } else if (diff < 0) {
             for (let ele of internshipList.splice(diff)) {
+                removeInternshipValidator(ele.attr("data-id-internship"));
                 ele.remove();
             }
         }
@@ -95,7 +123,5 @@ window.addEventListener("load", () => {
     internshipNumberInput.on("change", (event) => {
         changeNumberOfInternship();
     })
-
-
 })
 
