@@ -20,6 +20,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Thanks()
+    {
+        return View();
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(ViewModel.ApplicationForm application)
@@ -118,7 +123,7 @@ public class HomeController : Controller
         await _context.SaveChangesAsync();
         await SaveInternShipList(application, app.Id);
 
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Thanks));
     }
 
     async Task SaveInternShipList(ViewModel.ApplicationForm application, int applicationId)
